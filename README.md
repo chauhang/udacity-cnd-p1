@@ -52,5 +52,11 @@ Following shortcomings exist and can be explored in a future project:
  - Works for lane that have both left and right lane lines
  - Highway entry / exits with lane merging and city roads are not handled
  - Lanes with large gaps in line or poor line markings are not detected
+ - Sensitive to camera install position on the car, the region of interest is fixed and not calculated dynamically
  
+ Possible Improvements
+----------
+ The pipeline can be made more robust by extending for:
+ - Dynamic selection of the region of interest for the road selection. A window search algorithm can be used for proper identification and location of the road and elminate false positives
+ - Perform perspective transformation of the image for better lane detection and eliminate extra lanes detected in case of lane merging or other markings drawn on the road
  
