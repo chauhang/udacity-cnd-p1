@@ -33,11 +33,11 @@ The pipeline consists of seven steps.
 
 First, I applied a color filter to only select the white and yellow pixels from the images (corresponding to the colors for the lane lines). This helped in removing spurious lines from the image and simplified the processing downstream.
 
-Next, I converted the image to grayscale. Then smoothed using  Gaussian blur with a kernel of size 5 and sigma of 2. Canny edge detection was applied to the smoothed image resulting in removing most of the noise from the image as seen below: 
+Next, I converted the image to grayscale. Then smoothed using  Gaussian blur with a kernel of size 7 and sigma of 2. Canny edge detection was applied to the smoothed image resulting in removing most of the noise from the image as seen below: 
 
 <img src="examples/c1.jpg" width="480" alt="Color Filtered, Smoothed Canny Image" />
 
-Next, region of interest was selected to only process subset of the image corresponding to road ahead. Hough transformation was used for line detection on the selected subset. And lines were drawn by extrapolating the points across multiple frames in the video stream. Lines with slope outside threshold were discarded. The detected lines were divided into left and right buckets and then a average slope and intercept was computed across 5 video frames for drawing actual lines. 
+Next, region of interest was selected to only process subset of the image corresponding to road ahead. Hough transformation was used for line detection on the selected subset, with a threshold of 50 and max_line_gap of 100 to connect smaller spread out dashed line segments. Further, the lines were drawn by extrapolating the points across multiple frames in the video stream. Lines with slope outside threshold were discarded. The detected lines were divided into left and right buckets and then a average slope and intercept was computed across 5 video frames for drawing actual lines. 
 
 <img src="test_images_output/p_solidYellowLeft.jpg" width="480" alt="Image with Lane lines" />
 
